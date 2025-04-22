@@ -1,0 +1,154 @@
+ ## File Transfer Protocol (FTP) Client and Server in C++:
+
+
+---
+
+**FTP Client and Server in C++
+
+[Overview]
+
+This project implements a basic FTP (File Transfer Protocol) Client and Server in C++. It allows file transfer between a client and a server over a TCP/IP network. The client can request files from the server or upload files to it.
+
+
+---
+
+[Features]
+
+Establishes TCP connection between client and server
+
+File download from server to client
+
+File upload from client to server
+
+List files available on the server
+
+Handles basic error reporting (e.g., file not found)
+
+
+
+---
+
+[Requirements]
+
+C++11 or higher
+
+Socket libraries (platform-specific):
+
+Linux: <sys/socket.h>, <netinet/in.h>, <arpa/inet.h>
+
+Windows: Winsock2 (#pragma comment(lib, "ws2_32.lib"))
+
+
+Compiler: g++ / clang++ / Visual Studio
+
+
+
+---
+
+[How It Works]
+
+#Server Side
+
+1. Binds to a specified port.
+
+
+2. Listens for incoming client connections.
+
+
+3. On receiving a request, parses the command:
+
+GET filename – Sends file to client.
+
+PUT filename – Receives file from client.
+
+LIST – Sends a list of files in the server directory.
+
+
+
+4. Responds accordingly.
+
+
+
+[Client Side]
+
+1. Connects to server using IP and port.
+
+
+2. Sends commands:
+
+GET, PUT, LIST
+
+
+
+3. Handles file reading/writing based on server response.
+
+
+
+
+---
+
+#Build Instructions
+
+#Linux
+
+g++ -o ftp_server ftp_server.cpp
+g++ -o ftp_client ftp_client.cpp
+
+#Windows (Using g++ from MinGW)
+
+g++ -o ftp_server ftp_server.cpp -lws2_32
+g++ -o ftp_client ftp_client.cpp -lws2_32
+
+
+---
+
+[Run Instructions]
+
+#Start the server:
+
+./ftp_server <port>
+
+#Run the client:
+
+./ftp_client <server_ip> <port>
+
+
+---
+
+#Example Commands (Client Side)
+
+> LIST
+> GET sample.txt
+> PUT upload.txt
+> QUIT
+
+
+---
+
+[Limitations]
+
+Not secure (no encryption)
+
+Not multithreaded (single client at a time)
+
+Basic error handling
+
+Text-based command interface
+
+
+
+---
+
+[Future Improvements]
+
+Add support for multiple clients (multithreading)
+
+Implement authentication
+
+Add encryption (SSL/TLS)
+
+GUI support
+
+Resume interrupted 
+---
+
